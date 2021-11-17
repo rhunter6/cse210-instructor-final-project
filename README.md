@@ -1,10 +1,11 @@
 # Final Project
+## Space Trader
 
 ## Required Technologies
 ---
-* Python 3.8.0
+* Python 3.9.0
 * Arcade
 
 ## Authors
 ---
-* # TODO: Add your names and emails here
+* Russell Hunter 
