@@ -1,6 +1,7 @@
 import arcade
 import arcade.gui
 from game import constants
+from game.solar_view import SolarView
 
 
 class MenuView(arcade.View):
@@ -48,9 +49,9 @@ class MenuView(arcade.View):
         print("Instructions")
 
     def on_click_start(self, event):
-        """Start the game."""
-        print("Start Game")
-        arcade.exit()
+        """Show Solar View"""
+        solar_view = SolarView()
+        self.window.show_view(solar_view)
 
     def on_show(self):
         """Set the background color."""
