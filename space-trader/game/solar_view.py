@@ -16,6 +16,7 @@ class SolarView(arcade.View):
         The class constructor.  This sets up the locations to trade in the game.
         """
         super().__init__()
+        print("Solar init")
 
         # a UIManager to handle the UI.
         self._manager = arcade.gui.UIManager()

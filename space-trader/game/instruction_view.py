@@ -1,13 +1,12 @@
 import arcade
 import arcade.gui
 from game import constants
-from game import instruction_view
-from game import solar_view
+from game import menu_view
 
 
-class MenuView(arcade.View):
+class InstructionView(arcade.View):
     """
-    The starting menu for the game.  Allows the user to see instructions or start the game.
+    Show instructions for the game and then go back to main view.
 
     Stereotype:
         User Interfacer
@@ -29,16 +28,16 @@ class MenuView(arcade.View):
         # Create a vertical BoxGroup to align buttons
         self._v_box = arcade.gui.UIBoxLayout()
 
-        # Create the instruction button
-        instructions_button = arcade.gui.UIFlatButton(
-            text="Instructions", width=200)
-        instructions_button.on_click = self.on_click_instructions
-        self._v_box.add(instructions_button.with_space_around(bottom=20))
+        # Add text
+        instruction_text = arcade.gui.UILabel(
+            text="Directions on how to play the game.", font_size=constants.FONT_SIZE_MEDIUM, text_color=arcade.color.WHITE, )
+        self._v_box.add(instruction_text.with_space_around(bottom=40))
 
-        # Create the start game button
-        start_button = arcade.gui.UIFlatButton(text="Start Game", width=200)
-        start_button.on_click = self.on_click_start
-        self._v_box.add(start_button.with_space_around(bottom=20))
+        # Create the Back button
+        back_button = arcade.gui.UIFlatButton(
+            text="Back", width=200)
+        back_button.on_click = self.on_click_back
+        self._v_box.add(back_button.with_space_around(bottom=20))
 
         # Create a widget to hold the v_box widget, that will center the buttons
         self._manager.add(
@@ -48,19 +47,12 @@ class MenuView(arcade.View):
                 child=self._v_box)
         )
 
-    def on_click_instructions(self, event):
-        """Show the instructions, if we are visible"""
+    def on_click_back(self, event):
+        """Go back to main menu, if we are visible"""
         if (not self._visible):
             return
-        instructions = instruction_view.InstructionView()
-        self.window.show_view(instructions)
-
-    def on_click_start(self, event):
-        """Show Solar View, if we are visible"""
-        if (not self._visible):
-            return
-        solar = solar_view.SolarView()
-        self.window.show_view(solar)
+        menu = menu_view.MenuView()
+        self.window.show_view(menu)
 
     def on_show(self):
         """Set the background color."""
@@ -83,7 +75,7 @@ class MenuView(arcade.View):
         # Draw a title for the screen.
         line_y = constants.SCREEN_HEIGHT - \
             constants.FONT_SIZE_BIG - constants.TEXT_PADDING * 2
-        arcade.draw_text("Menu View", constants.SCREEN_WIDTH / 2, line_y,
+        arcade.draw_text("Instructions", constants.SCREEN_WIDTH / 2, line_y,
                          arcade.color.YELLOW, font_size=constants.FONT_SIZE_BIG, anchor_x="center")
 
         # Draw the Gui

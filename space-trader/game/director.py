@@ -18,9 +18,9 @@ class Director:
         """
         self._window = arcade.Window(
             constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, constants.SCREEN_TITLE)
-        self._menu = MenuView()
 
     def start_game(self):
         """Start the game."""
-        self._window.show_view(self._menu)
+        menu = MenuView()
+        self._window.show_view(menu)
         arcade.run()
