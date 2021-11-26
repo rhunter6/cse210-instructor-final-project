@@ -16,12 +16,17 @@ class SolarView(arcade.View):
         The class constructor.  This sets up the locations to trade in the game.
         """
         super().__init__()
-        print("Solar init")
 
         # a UIManager to handle the UI.
         self._manager = arcade.gui.UIManager()
         self._manager.enable()
 
+        self._resources = None
+
+    def setup(self):
+        """
+        Setup the game before playing the first time.
+        """
         # Create the 3 planets you can trade with
         planets = {
             "Planet 1": {"x": 20, "y": 20},
@@ -40,6 +45,10 @@ class SolarView(arcade.View):
                 child=planet_button)
             )
 
+        self._resources = [constants.RESOURCE_ONE_START,
+                           constants.RESOURCE_TWO_START,
+                           constants.RESOURCE_THREE_START]
+
     def on_planet_click(self, event):
         """Show the instructions"""
         print("Planet: ", event.source.text)
@@ -55,7 +64,7 @@ class SolarView(arcade.View):
         # Draw a title for the screen.
         line_y = constants.SCREEN_HEIGHT - \
             constants.FONT_SIZE_BIG - constants.TEXT_PADDING * 2
-        arcade.draw_text("Solar System View", constants.SCREEN_WIDTH / 2, line_y,
+        arcade.draw_text(constants.SOLAR_VIEW_TITLE, constants.SCREEN_WIDTH / 2, line_y,
                          arcade.color.YELLOW, font_size=constants.FONT_SIZE_BIG, anchor_x="center")
 
         # Draw the Gui

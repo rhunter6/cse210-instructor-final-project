@@ -31,12 +31,13 @@ class MenuView(arcade.View):
 
         # Create the instruction button
         instructions_button = arcade.gui.UIFlatButton(
-            text="Instructions", width=200)
+            text=constants.INSTRUCTION_BUTTON_TEXT, width=200)
         instructions_button.on_click = self.on_click_instructions
         self._v_box.add(instructions_button.with_space_around(bottom=20))
 
         # Create the start game button
-        start_button = arcade.gui.UIFlatButton(text="Start Game", width=200)
+        start_button = arcade.gui.UIFlatButton(
+            text=constants.START_GAME_BUTTON_TEXT, width=200)
         start_button.on_click = self.on_click_start
         self._v_box.add(start_button.with_space_around(bottom=20))
 
@@ -60,6 +61,7 @@ class MenuView(arcade.View):
         if (not self._visible):
             return
         solar = solar_view.SolarView()
+        solar.setup()
         self.window.show_view(solar)
 
     def on_show(self):
@@ -83,7 +85,7 @@ class MenuView(arcade.View):
         # Draw a title for the screen.
         line_y = constants.SCREEN_HEIGHT - \
             constants.FONT_SIZE_BIG - constants.TEXT_PADDING * 2
-        arcade.draw_text("Menu View", constants.SCREEN_WIDTH / 2, line_y,
+        arcade.draw_text(constants.MENU_VIEW_TITLE, constants.SCREEN_WIDTH / 2, line_y,
                          arcade.color.YELLOW, font_size=constants.FONT_SIZE_BIG, anchor_x="center")
 
         # Draw the Gui

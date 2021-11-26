@@ -30,12 +30,12 @@ class InstructionView(arcade.View):
 
         # Add text
         instruction_text = arcade.gui.UILabel(
-            text="Directions on how to play the game.", font_size=constants.FONT_SIZE_MEDIUM, text_color=arcade.color.WHITE, )
+            text=constants.INSTRUCTIONS_TEXT, font_size=constants.FONT_SIZE_MEDIUM, text_color=arcade.color.WHITE, )
         self._v_box.add(instruction_text.with_space_around(bottom=40))
 
         # Create the Back button
         back_button = arcade.gui.UIFlatButton(
-            text="Back", width=200)
+            text=constants.BACK_BUTTON_TEXT, width=200)
         back_button.on_click = self.on_click_back
         self._v_box.add(back_button.with_space_around(bottom=20))
 
@@ -75,7 +75,7 @@ class InstructionView(arcade.View):
         # Draw a title for the screen.
         line_y = constants.SCREEN_HEIGHT - \
             constants.FONT_SIZE_BIG - constants.TEXT_PADDING * 2
-        arcade.draw_text("Instructions", constants.SCREEN_WIDTH / 2, line_y,
+        arcade.draw_text(constants.INSTRUCTION_VIEW_TITLE, constants.SCREEN_WIDTH / 2, line_y,
                          arcade.color.YELLOW, font_size=constants.FONT_SIZE_BIG, anchor_x="center")
 
         # Draw the Gui
