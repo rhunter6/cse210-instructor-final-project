@@ -57,6 +57,11 @@ class SolarView(arcade.View):
         """Set the background color."""
         arcade.set_background_color(arcade.color.BLACK)
 
+    def on_hide_view(self):
+        """Disable the gui manager"""
+        super().on_hide_view()
+        self._manager.disable()
+
     def on_draw(self):
         """Draw the buttons"""
         arcade.start_render()

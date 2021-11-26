@@ -19,9 +19,6 @@ class MenuView(arcade.View):
         """
         super().__init__()
 
-        # Flag if the view is shown
-        self._visible = False
-
         # a UIManager to handle the UI.
         self._manager = arcade.gui.UIManager()
         self._manager.enable()
@@ -50,16 +47,12 @@ class MenuView(arcade.View):
         )
 
     def on_click_instructions(self, event):
-        """Show the instructions, if we are visible"""
-        if (not self._visible):
-            return
+        """Show the instructions"""
         instructions = instruction_view.InstructionView()
         self.window.show_view(instructions)
 
     def on_click_start(self, event):
-        """Show Solar View, if we are visible"""
-        if (not self._visible):
-            return
+        """Show Solar Sysem View"""
         solar = solar_view.SolarView()
         solar.setup()
         self.window.show_view(solar)
@@ -68,15 +61,10 @@ class MenuView(arcade.View):
         """Set the background color."""
         arcade.set_background_color(arcade.color.BLEU_DE_FRANCE)
 
-    def on_show_view(self):
-        """Set flag that we are now visible"""
-        super().on_show_view()
-        self._visible = True
-
     def on_hide_view(self):
-        """Clear flag that we are now visible"""
+        """Disable gui manager"""
         super().on_hide_view()
-        self._visible = False
+        self._manager.disable()
 
     def on_draw(self):
         """Draw the buttons"""

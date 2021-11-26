@@ -18,9 +18,6 @@ class InstructionView(arcade.View):
         """
         super().__init__()
 
-        # Flag if the view is shown
-        self._visible = False
-
         # a UIManager to handle the UI.
         self._manager = arcade.gui.UIManager()
         self._manager.enable()
@@ -48,9 +45,7 @@ class InstructionView(arcade.View):
         )
 
     def on_click_back(self, event):
-        """Go back to main menu, if we are visible"""
-        if (not self._visible):
-            return
+        """Go back to main menu"""
         menu = menu_view.MenuView()
         self.window.show_view(menu)
 
@@ -58,15 +53,10 @@ class InstructionView(arcade.View):
         """Set the background color."""
         arcade.set_background_color(arcade.color.BLEU_DE_FRANCE)
 
-    def on_show_view(self):
-        """Set flag that we are now visible"""
-        super().on_show_view()
-        self._visible = True
-
     def on_hide_view(self):
-        """Clear flag that we are now visible"""
+        """Disable the gui manager"""
         super().on_hide_view()
-        self._visible = False
+        self._manager.disable()
 
     def on_draw(self):
         """Draw the buttons"""
