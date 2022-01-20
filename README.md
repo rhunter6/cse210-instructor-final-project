@@ -7,6 +7,7 @@ Coming soon.
 And I have more text.
 Even more text.
 More text in my readme.
+More edits.
 
 ## Required Technologies
 
