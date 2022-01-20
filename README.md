@@ -3,6 +3,7 @@
 ## Space Trader
 
 A game where you have to trade resources and become the richest in the galaxy.
+Comming soon.
 
 ## Required Technologies
 
